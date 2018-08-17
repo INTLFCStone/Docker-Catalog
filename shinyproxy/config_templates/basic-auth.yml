@@ -7,6 +7,7 @@ proxy:
       password: ${REPLACE_GUEST_PASSWORD?Required!}
     - name: admin
       password: ${REPLACE_ADMIN_PASSWORD?Required!}
+      groups: admins
     docker:
         internal-networking: true
 "${REPLACE_SPECS_YML?Required!}"
