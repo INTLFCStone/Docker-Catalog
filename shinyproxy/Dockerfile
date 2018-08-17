@@ -5,7 +5,6 @@
 FROM openjdk:8-jre
 
 ENV SHINYPROXY_VER="2.0.1"
-ENV SHINYPROXY_LOCAL_CONFIG_FILE="config_templates/default.yml"
 ENV SHINYPROXY_INSTALL_DIR="/opt/shinyproxy/"
 ENV SHINYPROXY_DOCKER_CONFIG_FILE="${SHINYPROXY_INSTALL_DIR}application.yml"
 
@@ -14,7 +13,7 @@ RUN curl https://www.shinyproxy.io/downloads/shinyproxy-"${SHINYPROXY_VER}".jar 
 
 # set up configuration file for replacement on startup
 WORKDIR "${SHINYPROXY_INSTALL_DIR}"
-COPY "${SHINYPROXY_LOCAL_CONFIG_FILE}" "${SHINYPROXY_DOCKER_CONFIG_FILE}"
+COPY ./config_templates/default.yml "${SHINYPROXY_DOCKER_CONFIG_FILE}"
 
 # add our startup script
 COPY ./start.sh "${SHINYPROXY_INSTALL_DIR}"
