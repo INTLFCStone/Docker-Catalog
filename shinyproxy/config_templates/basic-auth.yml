@@ -1,0 +1,16 @@
+proxy:
+    port: ${REPLACE_PORT_NUMBER?Required!}
+    authentication: simple
+    admin-groups: admins
+    users:
+    - name: guest
+      password: ${REPLACE_GUEST_PASSWORD?Required!}
+    - name: admin
+      password: ${REPLACE_ADMIN_PASSWORD?Required!}
+    docker:
+        internal-networking: true
+"${REPLACE_SPECS_YML?Required!}"
+
+logging:
+    file:
+        /var/log/shinyproxy.log
