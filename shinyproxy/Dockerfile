@@ -18,4 +18,4 @@ COPY ./config_templates/default.yml "${SHINYPROXY_DOCKER_CONFIG_FILE}"
 # add our startup script
 COPY ./start.sh "${SHINYPROXY_INSTALL_DIR}"
 
-CMD ["${SHINYPROXY_INSTALL_DIR}start.sh"]
+CMD ["sh", "-c", "${SHINYPROXY_INSTALL_DIR}start.sh"]
