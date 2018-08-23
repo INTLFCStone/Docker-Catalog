@@ -24,11 +24,14 @@ Enjoy!
         # Run the docker image, providing all vars to replace in the config template... go crazy!
         # You're free to pull credentials from keyvaults, your own local environment variables,
         # or just plaintext strings (but make sure to clear your bash history!!)... You do you.
-        docker run \
+        docker run -d \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            --net sp-example-net \
+            -p 8080:8080 \
             -e REPLACE_PORT_NUMBER=8080 \
             -e REPLACE_GUEST_PASSWORD="hello123" \
             -e REPLACE_ADMIN_PASSWORD="$(curl www.myinternalkeyvault.com/my-secret-key.txt)" \
-            -e REPLACE_SPEC_YML="$(cat mylocalspec.local)" \
+            -e REPLACE_SPECS_YML="$(cat mylocalspec.local)" \
             myshinyproxy-basicauth:latest
             
         # congrats! You now have a working proxyserver using basic auth with `guest` and `admin` users!
