@@ -10,9 +10,10 @@
 #-------------------------------------------------------------------------------
 Main () {
     set -e
-    tmp_config="${SHINYPROXY_DOCKER_CONFIG_FILE}.tmp"
-    BuildApplicationYmlFile "${SHINYPROXY_DOCKER_CONFIG_FILE}" > "${tmp_config}"
-    mv "${tmp_config}" "${SHINYPROXY_DOCKER_CONFIG_FILE}"
+    if [[ ! -f "${SHINYPROXY_DOCKER_CONFIG_FILE}" ]]
+    then
+        BuildApplicationYmlFile "${SHINYPROXY_DOCKER_CONFIG_FILE_TEMPLATE}" > "${SHINYPROXY_DOCKER_CONFIG_FILE}"
+    fi
     java -jar "${SHINYPROXY_INSTALL_DIR}"shinyproxy.jar
 }
 
